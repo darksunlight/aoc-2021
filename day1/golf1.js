@@ -1,0 +1,1 @@
+require('fs').readFileSync('./input.txt', 'utf-8').split('\n').map(x => parseInt(x)).map((e, i, a) => e > a[i-1]).filter(x => x).length
