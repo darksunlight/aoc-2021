@@ -1,1 +1,1 @@
-require('fs').readFileSync('./input.txt', 'utf-8').split('\n').map(x => parseInt(x)).map((e, i, a) => e > a[i-3]).filter(x => x).length
+require('fs').readFileSync('t','utf8').split`\n`.reduce((p,e,i,a)=>p+(+e>+a[i-3]),0)
