@@ -9,7 +9,7 @@ for (let i = 0; i < input.length; i++) {
     school[input[i]]++;
 }
 
-for (let i = 0; i < 256; i++) {
-    school = [...[1, 2, 3, 4, 5, 6].map(x => school[x]), school[0] + school[7], school[8], school[0]];
+for (let i = 0; i < 5000000; i++) {
+    school = [...school.slice(1,7), school[0] + school[7], school[8], school[0]];
 }
 console.log(school.reduce((p, c) => p + c, 0n));
