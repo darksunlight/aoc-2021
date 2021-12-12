@@ -25,10 +25,11 @@ function explore(start, path, small) {
         const newPath = Array.from(path);
         let newSmall = small;
         const connection = connections[start][i];
-        if (connection == 'start' || (path.filter(x => x == connection).length > 0 && connection == connection.toLowerCase() && small)) {
-            continue;
+        if (connection == 'start') continue;
+        if (path.filter(x => x == connection).length > 0 && connection == connection.toLowerCase()) {
+            if (small) continue;
+            newSmall = connection;
         }
-        if (path.filter(x => x == connection).length > 0 && connection == connection.toLowerCase()) newSmall = connection;
         newPath.push(connection);
         if (connection == 'end') {
             paths.push(newPath);
