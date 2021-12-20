@@ -1,4 +1,4 @@
-// Day 15 - Part 1 (currently returns an incorrrect answer after 30 seconds)
+// Day 15 - Part 1 (currently returns an incorrrect answer after 4.5 seconds)
 const filename = './input.txt';
 const fs = require('fs');
 const input = fs.readFileSync(filename, 'utf-8').split('\n').map(x => x.split('').map(x => +x));
@@ -29,9 +29,9 @@ function dijkstra() {
         const u = [...vertices.entries()].sort((a, b) => dist[a[1]] - dist[b[1]])[0];
         const [ux, uy] = u[0].split(',').map(x => +x);
         vertices.delete(u[0]);
-        for (const [k, v] of vertices.entries()) {
+        const neighbours = [`${ux-1},${uy}`,`${ux+1},${uy}`,`${ux},${uy-1}`,`${ux},${uy+1}`].map(x => [x, vertices.get(x)]).filter(x => x[1]);
+        for (const [k, v] of neighbours) {
             const [x, y] = k.split(',').map(x => +x);
-            if (!(uy == y && Math.abs(x - ux) == 1) && !(ux == x && Math.abs(y - uy) == 1)) continue;
             console.log(u, [k, v], (dist[u[0]] >= 9e9 ? 0 : dist[u[0]]));
             const alt = (dist[u[0]] >= 9e9 ? 0 : dist[u[0]]) + length(u, [k, v]);
             if (alt < dist[k]) {
